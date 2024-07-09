@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import List from './components/List.jsx'
 
 function App() {
     const [postData, setPostData] = useState([]); 
@@ -23,13 +24,7 @@ function App() {
     return (
         <>
             <h1>Hello World</h1>
-            <ul>
-                {
-                    postData.map((post) => {
-                        return <li key={post.id}><a href="+">{post.title}</a></li>
-                    })
-                }
-            </ul>
+            <List list={postData} />
         </>
       )
 }
