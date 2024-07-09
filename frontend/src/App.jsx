@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react"
 
 function App() {
-    const [data, setData] = useState([]); 
+    const [postData, setPostData] = useState([]); 
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(false); 
     useEffect(() => {
         (async() => {
             try{
+                setLoading('true');
                 const response = await fetch(`${import.meta.env.VITE_BASE_URL}api/allblogs`); 
                 const data = await response.json();
-                setData(data);
-                console.log(data);
-            } catch {
+                setPostData(data.blogs);
+            } catch (err) {
+                setError(true) ;
                 console.log("error");
+            } finally {
+                setLoading(false);
             }
 
         })();
     }, []);
-
     return (
         <>
-            <p>Hello World</p>
+            <h1>Hello World</h1>
+            <ul>
+                {
+                    postData.map((post) => {
+                        return <li key={post.id}><a href="+">{post.title}</a></li>
+                    })
+                }
+            </ul>
         </>
       )
 }
