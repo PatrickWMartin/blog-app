@@ -2,11 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import {reqLogger} from './middleware/logEvents.js'
+import { corsOptions } from './middleware/corsOptionSetup.js';
+
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
 
-//Logging
+app.use(cors(corsOptions));
 app.use(reqLogger);
 
 const blogs = [
