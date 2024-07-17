@@ -7,7 +7,7 @@ const corsOptions = {
         if (whitelist.indexOf(origin) !== -1 || (process.env.ENV === 'dev' && !origin)){
             callback(null, true)
         } else {
-            callback(new Error('Not allowed by CORS'))
+            callback(new Error('CORS Policy Violation'))
         }
     },
     optionsSuccessStatus: 200,

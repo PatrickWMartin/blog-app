@@ -24,4 +24,4 @@ const writeLogsToFile = (logFile, logContent) => {
     appendFileSync(join(logsPath,logFile), logContent+'\n');
 };
 
-export {reqLogger}
+export {reqLogger, writeLogsToFile, getDate}

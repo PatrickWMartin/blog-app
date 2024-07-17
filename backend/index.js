@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import {reqLogger} from './middleware/logEvents.js'
 import { corsOptions } from './middleware/corsOptionSetup.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -60,6 +61,8 @@ app.get('/api/allblogs', (_, res) =>{
         }
     )
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Listening on part ${port}...`);
