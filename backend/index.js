@@ -1,22 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-
+import {reqLogger} from './middleware/logEvents.js'
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(cors());
 
-
-const getDate = function(){
-    let d = new Date();
-    return `${d.getFullYear()}-${d.getDate()}-${d.getMonth()+1}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
-
-}
 //Logging
-app.use((req, _, next) => {
-    console.log(`${getDate()}\t${req.method}\t${req.headers.origin}\t${req.url}`)
-    next()
-});
+app.use(reqLogger);
 
 const blogs = [
                 {
