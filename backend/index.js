@@ -62,6 +62,10 @@ app.get('/api/allblogs', (_, res) =>{
     )
 });
 
+app.all('*', (_, res) => {
+    res.status(404);
+    res.send("Resourse not found")
+});
 app.use(errorHandler);
 
 app.listen(port, () => {
